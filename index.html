@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <h2>Computer Selection:<span id="computer-selection"></span></h2>
+    <h2>Player Selection:<span id="player-selection"></span></h2>
+    <h2>Result:<span id="result"></span></h2>
+
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
+
+    <script>
+        const computerSelectionDisplay = document.getElementById('computer-selection')
+        const playerSelectionDisplay = document.getElementById('player-selection')
+        const resultDisplay = document.getElementById('result')
+        const possibleChoices = document.querySelectorAll('button')
+
+        possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) =>{
+            playerSelection = e.target.id
+            playerSelectionDisplay.innerHTML = playerSelection
+            getComputerSelection()
+            playRound()
+        }))
+        let result
+        function playRound(){
+            if (computerSelection === playerSelection) {
+                result = 'its a draw!'
+            }
+            if (computerSelection === 'rock' && playerSelection ==="paper"){
+                result = 'you win!'
+            }
+            if (computerSelection === 'rock' && playerSelection ==="scissors"){
+                result = 'you lost!'
+            }
+            if (computerSelection === 'paper' && playerSelection ==="scissors"){
+                result = 'you win!'
+            }
+            if (computerSelection === 'paper' && playerSelection ==="rock"){
+                result = 'you lost!'
+            }
+            if (computerSelection === 'scissors' && playerSelection ==="rock"){
+                result = 'you win!'
+            }
+            if (computerSelection === 'scissors' && playerSelection ==="paper"){
+                result = 'you lost!'
+            }
+            resultDisplay.innerHTML = result
+        }
+        function getComputerSelection(){
+            const randomNumber = Math.floor(Math.random() * 3) + 1;
+            if (randomNumber === 1){
+                computerSelection = 'rock'
+            }
+            if (randomNumber === 2){
+                computerSelection = 'scissors'
+            }
+            if (randomNumber === 3){
+                computerSelection = 'paper'
+            }
+            computerSelectionDisplay.innerHTML = computerSelection
+        }
+    </script>
+</body>
+</html>
